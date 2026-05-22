@@ -1,0 +1,644 @@
+/* ここから下に記載していく */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 120px;
+}
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: normal;
+    color: #222222;
+    font-size: 16px;
+    line-height: 1.8;
+    letter-spacing: 0.05em;
+    padding-top: 120px;
+}
+
+.overlay {
+    display: none;
+    position: fixed;     /* 画面に固定 */
+    top: 0; left: 0;                                                                             
+    width: 100%; height: 100%;                                                                   
+    z-index: 200;        /* headerのz-index:100より上 */
+    flex-direction: column;                                                                      
+    justify-content: center;
+    align-items: center;  
+    transition: opacity 7s ease; 
+}
+
+.overlay-message {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffd61a;
+    padding: 20px 40px;
+    border-radius: 10px;
+    margin-bottom: 60px; 
+    gap: 20px;
+}
+
+.overlay h5 {
+    font-size: 24px;
+    color: #fff;
+}
+
+.spinner {                                                                                       
+    display: none;
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(255,255,255,0.3);
+    border-top: 4px solid #fff;                                                                  
+    border-radius: 50%;
+    animation: spin 1s linear infinite;                                                          
+    margin: 0 auto;                                                                         
+}
+
+@keyframes spin {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}  
+
+.overlay-btn {
+    background-color: #222222;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #fff;
+    z-index: 100;
+    padding: 20px 0;
+}
+
+.header .inner {
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+}
+
+
+.nav-list {
+    display: flex;
+    font-size: 21px;
+    gap:30px;
+}
+
+.nav-list a {
+    color: #222222;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.3s;
+}
+
+.nav-list a:hover {
+    transform: scale(1.1);
+}
+
+.hamburger {    
+    display: none;                                                                                                      
+    flex-direction: column;
+    gap: 6px;                                                                                                           
+    background: none;
+    border: none;                                                                                                       
+    cursor: pointer;
+    padding: 5px;                                                                                                       
+}
+                                                                                                                        
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #222222;                                                                                          
+    border-radius: 3px;
+    transition: 0.3s;                                                                                                   
+} 
+
+  /* 1本目を右斜めに */
+  .hamburger.open span:nth-child(1) {                                                                                     
+    transform: translateY(9px) rotate(45deg);
+}                                                                                                                       
+                                                                                                                        
+/* 2本目を消す */
+.hamburger.open span:nth-child(2) {                                                                                     
+    opacity: 0;                             
+}                                                                                                                       
+                
+/* 3本目を左斜めに */                                                                                                   
+.hamburger.open span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);                                                                         
+} 
+
+
+.mainvisual {
+    background-image: url('../img/mainbg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 500px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainvisual h2 {
+    font-size: 48px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.mainvisual p {
+    font-size: 32px;
+    color: #fff;
+    margin-top: 10px;
+}
+
+.about h2,
+.about h3,
+.about p {
+    text-align: center;
+}
+
+.about h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffd61a;
+    margin: 60px 0 30px 0;
+}
+
+.about h3 {
+    font-size: 18px;
+    margin: 0 0 60px 0;
+}
+
+.about p {
+    margin-bottom: 20px;
+    /* 指示書の40pxを入れるとline-hightと干渉して指示書の見た目以上に間が開く */
+}
+
+.about-image {
+    display:  flex;
+    justify-content: center;
+    margin: 80px 0 60px 0;
+}
+
+.about-image img {
+    width: 25%;
+    height: auto;
+}
+
+.course h2,
+.course-lead {
+    text-align: center;
+}
+
+.course h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffd61a;
+    margin: 60px 0 30px 0;
+}
+
+.course-lead {
+    margin-bottom: 60px;
+}
+
+.course-box {
+    display: flex;
+    justify-content: center;
+}
+
+.course-box img {
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+}
+
+.course-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #fafafa;
+    width: 50%;
+}
+
+.course-text-left {
+    padding-left: 50px;
+}
+
+.course-text h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.course-text p {
+    max-width: 430px;
+}
+
+.course-box-reverse {
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
+}
+
+.course-box-reverse img {
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+}
+
+.course-text-right {
+    padding-right: 50px;
+    align-items: flex-end;
+}
+
+.course-text-right h3 {
+    max-width: 430px;
+    width: 100%;
+    text-align: left;
+}
+
+.news h2 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: #ffd61a;
+    margin: 60px 0 30px 0;
+}
+
+.news h3 {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.wrap-box {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1000px;
+    margin: 60px auto;
+}
+
+.eachbox {
+    display: flex;
+    flex-direction: column;
+    width:300px;
+}
+
+.eachbox img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.eachbox h4 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 30px 0 24px 0; ;
+}
+
+a.eachbox {
+    color: #222222;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.3s;
+}
+
+.eachbox:hover {
+    opacity: 0.7;
+    transition: opacity 0.3s;
+
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    background-color:#ffd61a;
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 4px;
+    width: 300px;
+    height: 60px;
+    margin: 0 auto;
+    transition: .3s;
+}
+
+.btn:hover {
+    border-radius: 12px;
+}
+
+.access {
+    background-color: #fafafa;
+    max-width: 1200px;
+    margin: 60px auto 0;
+}
+
+.access h2 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: #ffd61a;
+    margin: 60px 0 30px 0;
+}
+
+.access h3 {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.access-map {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 400px;
+    margin: 0 auto 60px 0;
+}
+
+
+dl {
+    width: 450px; /* 幅を指定 */
+    margin: 0 auto; /* 中央寄せ */
+}
+
+dt {
+    width: 200px; /* 項目名の幅を固定 */
+}
+
+dd {
+    width: calc(100% - 200px); /* 残りの幅 */
+}
+
+.dl-row {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+
+
+.contact {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact h2 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: #ffd61a;
+    margin: 60px 0 30px 0;
+}
+
+.contact h3 {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.contact p {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.first-para {
+    margin-bottom: 30px;
+}
+
+.second-para {
+    margin-bottom: 70px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 640px;
+    margin: 0 auto;
+}
+
+.form-row > label {
+    width: 240px;
+    flex-shrink: 0;
+    padding: 0 15px;
+}
+
+
+.form-row input:not([type="checkbox"]),
+.form-row select,
+.form-row textarea {
+    width: 400px;
+}
+
+.form-row textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+.checkbox-group {
+    width: 400px;
+}
+
+.checkbox-group .checkbox-interest {
+    display: flex;
+    align-items: center;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+}
+
+input[type="submit"] {
+    border: none;      /* 枠線を消す */
+    cursor: pointer;   /* マウスをポインターに */
+    display: block;
+    width: 300px;
+    height: 60px;
+    background-color: #ffd61a;
+    color: #fff;
+    font-size: 18px;
+    margin: 15px auto 140px;
+    
+}
+
+input[type="submit"]:hover {
+    border-radius: 12px;
+}
+
+.footer {
+    color: #fff;
+    background-color: #707070;
+    padding: 30px 0;
+    text-align: center;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) and (max-width: 1049px) {
+    .wrap {
+        filter: blur(8px);
+    }
+    .header {
+        filter: blur(8px);
+    }
+    .overlay {
+        display: flex;
+    }
+} 
+
+@media (max-width: 767px) {
+    .inner {
+        padding: 20px;
+    }
+
+    .header .inner {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 20px;
+
+    }
+
+    .header img {
+        width: 200px;
+    }
+
+    .hamburger {                                                                                                            
+        display: flex;
+    }
+                                                                                                                     
+    
+    .nav-list {                                                                                                             
+        display: flex;          /* display:noneをやめる */                                                                  
+        flex-direction: column;                                                                                             
+        position: absolute;                     
+        top: 80px;                                                                                                          
+        left: 0;
+        width: 100%;                                                                                                        
+        background-color: #fff;
+        padding: 0 20px;        /* 閉じているときはpaddingを0に */                                                          
+        font-size: 12px;                        
+        gap: 16px;                          
+        max-height: 0;          /* ← 高さを0にして隠す */
+        overflow: hidden;       /* ← はみ出た部分を隠す */                                                                  
+        transition: max-height 0.3s ease;  /* ← アニメーション */
+    }                                                                                                                       
+                                                                                                                            
+    .nav-list.open {                                                                                                        
+        max-height: 300px;      /* ← 開いたときの高さ */                                                                    
+        padding: 20px;                                                                                                      
+    } 
+
+
+    dl {
+        width: 100%;
+    }
+
+
+    .mainvisual h2 {
+        font-size: 28px;
+        padding: 0 20px;
+    }
+
+    .mainvisual p {
+        font-size: 18px;
+        padding: 0 20px;
+    }
+
+    .about-image {
+        flex-direction: column;
+    
+    }
+
+    .about-image img {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .about p {
+        text-align: left;
+        padding: 0 20px;
+    }
+
+    .course p {
+        text-align: left;
+    }
+
+    .course-box,
+    .course-box-reverse {
+        flex-direction: column;
+    }
+
+    .course-box img,
+    .course-box-reverse img,
+    .course-text  {
+        width: 100%;
+    }
+
+    .course-text-left {
+        padding: 0;
+    }
+
+    .course-text-right {
+        padding: 0;
+        align-items: flex-start;
+    }
+
+    .course-text p {
+        max-width: 100%;
+    }
+
+    .wrap-box {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .eachbox {
+        width: 100%;
+    }
+
+    form {
+        width: 100%;
+    }
+
+    .form-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .form-row input:not([type="checkbox"]),
+    .form-row select,
+    .form-row textarea {
+        width: 100%;
+    }
+
+    .form-row > label {
+        width: 100%;
+    }
+
+    .checkbox-group {
+        width: 100%;
+    }
+}
